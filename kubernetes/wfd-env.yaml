@@ -1,0 +1,17 @@
+apiVersion: v1
+data:
+  eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka/
+  spring.cloud.config.uri: http://config:8888/
+  spring.zipkin.baseUrl: http://zipkin:9411/
+  spring.cloud.config.retry.initialInterval: 3000
+  spring.cloud.config.retry.multiplier: 2.0
+  spring.cloud.config.retry.maxInterval: 50000
+  spring.cloud.config.retry.maxAttempts: 20
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2017-09-13T22:00:24Z
+  name: wfd-env
+  namespace: default
+  resourceVersion: "2072"
+  selfLink: /api/v1/namespaces/default/configmaps/wfd-env
+  uid: f1fdf1de-98ce-11e7-bcc1-9e04ea6b6f1b

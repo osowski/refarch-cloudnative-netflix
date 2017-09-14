@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wfd-menu
+  labels:
+    app: whats-for-dinner
+    tier: app
+    component: menu
+data:
+  application.yaml: |+
+    server:
+      port: 8080
+
+    eureka:
+      client:
+        serviceUrl:
+           defaultZone: http://eureka:8761/eureka/
+      instance:
+        hostname: dessert
+        preferIpAddress: true
+
+    wfd:
+      menu:
+        appetizers:
+          url: http://appetizer-service/appetizers
+        entrees:
+          url: http://entree-service/entrees
+        desserts:
+          url: http://dessert-service/desserts
+
+  bootstrap.yaml: |+
+    spring:
+      application:
+        name: menu-service
+      cloud:
+        config:
+          uri: http://config:8888
+          retry:
+            initialInterval: 3000
+            multiplier: 2.0
+            maxInterval: 50000
+            maxAttempts: 20

@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+ name: wfd-zuul
+spec:
+  template:
+    metadata:
+      labels:
+        app: whats-for-dinner
+        tier: infrastructure
+        component: proxy
+    spec:
+      containers:
+      - name: zuul
+        image: registry.ng.bluemix.net/whats_for_dinner/netflix-zuul:V1
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: config
+          mountPath: /config
+      volumes:
+      - name: config
+        configMap:
+          name: wfd-zuul

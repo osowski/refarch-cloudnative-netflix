@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wfd-eureka
+  labels:
+    app: whats-for-dinner
+    tier: infrastructure
+    component: eureka
+data:
+  application.yaml: |+
+    server:
+      port: 8761
+
+    eureka:
+      instance:
+        hostname: eureka
+        leaseRenewalIntervalInSeconds: 3
+      client:
+        registerWithEureka: false
+        fetchRegistry: false
+        serviceUrl:
+          defaultZone: http://eureka:8761/eureka/
+      server:
+        renewalPercentThreshold: 0.32
+        waitTimeInMsWhenSyncEmpty: 0
+
+  bootstrap.yaml: |+
+    spring:
+      application:
+        name: eureka
+      cloud:
+        config:
+          uri:  http://config:8888/
+          retry:
+            initialInterval: 3000
+            multiplier: 2.0
+            maxInterval: 50000
+            maxAttempts: 20

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: entrees
+  labels:
+    app: whats-for-dinner
+    tier: app
+    component: entree
+spec:
+  selector:
+    app: whats-for-dinner
+    tier: app
+    component: entree
+  type: ClusterIP
+  ports:
+   - protocol: TCP
+     port: 8080
+     targetPort: 8080

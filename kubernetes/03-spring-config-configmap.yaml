@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wfd-config
+  labels:
+    app: whats-for-dinner
+    tier: infrastructure
+    component: config-server
+data:
+  application.yaml: |+
+    spring:
+      cloud:
+        config:
+          server:
+            git:
+              uri: https://github.com/ibm-cloud-architecture/refarch-cloudnative-spring-config
+
+    server:
+      port: 8888
+
+    management:
+      context-path: /admin
+
+    eureka:
+      client:
+        serviceUrl:
+           defaultZone: http://eureka:8761/eureka/
+      instance:
+        hostname: config-server
+        preferIpAddress: true
+
+  bootstrap.yaml: |+
+    spring:
+      application:
+        name: config-server

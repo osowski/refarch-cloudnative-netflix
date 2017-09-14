@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+ name: wfd-ui
+spec:
+  template:
+    metadata:
+      labels:
+        app: whats-for-dinner
+        tier: app
+        component: ui
+    spec:
+      containers:
+      - name: ui
+        image: registry.ng.bluemix.net/whats_for_dinner/wfd-ui:V1
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: config
+          mountPath: /config
+      volumes:
+      - name: config
+        configMap:
+          name: wfd-ui

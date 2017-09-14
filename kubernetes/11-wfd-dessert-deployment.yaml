@@ -2,6 +2,10 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
  name: wfd-dessert
+ labels:
+   app: whats-for-dinner
+   tier: app
+   component: dessert
 spec:
   template:
     metadata:

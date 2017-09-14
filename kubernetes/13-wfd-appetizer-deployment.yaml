@@ -2,6 +2,10 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
  name: wfd-appetizer
+ labels:
+   app: whats-for-dinner
+   tier: app
+   component: appetizer
 spec:
   template:
     metadata:

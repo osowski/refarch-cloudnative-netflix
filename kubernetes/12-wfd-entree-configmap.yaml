@@ -16,7 +16,7 @@ data:
         serviceUrl:
            defaultZone: http://eureka:8761/eureka/
       instance:
-        hostname: entree
+        hostname: entrees
         preferIpAddress: true
 
     wfd:

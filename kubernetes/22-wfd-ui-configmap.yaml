@@ -19,6 +19,10 @@ data:
         hostname: ui
         preferIpAddress: true
 
+    wfd:
+      menu:
+        url: http://menu-service/menu
+
   bootstrap.yaml: |+
     spring:
       application:
